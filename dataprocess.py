@@ -56,9 +56,6 @@ df_btc_clean = df_btc_clean.reset_index(drop=True)
 # get the close value by using the max time of a date 
 df_btc_close = df_btc_clean.groupby("Date").max("Time")
 
-# reset index again
-df_btc_close = df_btc_close.reset_index()
-
 # sort by date
 df_btc_close.sort_values(by="Date")
 
@@ -135,4 +132,4 @@ df_combine_diff["INDU_diffpct"] = df_combine_diff.apply(lambda x: diffpct(df_com
 df_combine_diff["Oil_diffpct"] = df_combine_diff.apply(lambda x: diffpct(df_combine_diff, "Oil", x["Date"]), axis=1)
 
 # save the df to csv
-df_combine_diff.to_csv("./combine.csv")
+df_combine_diff.to_csv("./combine.csv", index=False)
