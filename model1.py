@@ -1,7 +1,7 @@
 from pickle import NONE
 import pandas as pd
 import numpy as np
-from SQLAlchemy import create_engine
+from sqlalchemy import create_engine
 from datetime import datetime, timedelta
 from tensorflow.keras.layers import Dense, LSTM
 from tensorflow.keras.models import Sequential, load_model
