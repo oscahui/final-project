@@ -4,6 +4,8 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 import joblib
 
+input_list = ["oil_diff", "gold_diff"]
+
 def create_model():
     df = pd.read_csv("./data/combine.csv")
 
@@ -12,7 +14,7 @@ def create_model():
     ind_train_start = 360
     ind_test_start = int((len(df) - 360) * 0.8)
 
-    X = df[["oil", "gold"]]
+    X = df[input_list]
     y = df["trend"]
 
     X_train = X.iloc[ind_train_start:ind_test_start]
@@ -38,16 +40,21 @@ def create_model():
     joblib.dump(grid, "svc.h5")
     joblib.dump(X_scaler, "svc.scl")
 
-def predict(oil_price, gold_price):
+def predict(price_dict):
     model = joblib.load("svc.h5")
     scaler = joblib.load("svc.scl")
-    X = pd.DataFrame({
-        "oil": [oil_price],
-        "gold": [gold_price]
-    })
-    X_scaled = scaler.transform(X)
+    input = {}
+    for i in input_list:
+        input[i] = [price_dict[i]]
+    print(input)
+    X = pd.DataFrame.from_dict(input)
     print(X.head())
+    X_scaled = scaler.transform(X)
+
     print(model.predict(X_scaled))
 
 #create_model()
-# predict(140000,1200000)
+#predict({
+#    input_list[0] : 11500,
+#    input_list[1] : 111100
+#})
