@@ -7,11 +7,14 @@ from tensorflow.keras.layers import Dense, LSTM
 from tensorflow.keras.models import Sequential, load_model
 from sklearn.preprocessing import MinMaxScaler
 import joblib
+import os
+
 
 # define how many days to use LSTM
 table_name = "bitcoin_data"
 n_days = 60
-db = "sqlite:///db.sqlite"
+# os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
+db = os.environ.get('DATABASE_URL', '')
 default_suffix = "default"
 engine = create_engine(db)
 

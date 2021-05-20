@@ -4,11 +4,11 @@ import pandas as pd
 from pandas.io.sql import has_table
 from sqlalchemy import create_engine, Table, Column, MetaData
 from sqlalchemy import DateTime, Float, Integer, String
-from sqlalchemy.sql.sqltypes import Boolean, VARCHAR, DATETIME
+from sqlalchemy.sql.sqltypes import Boolean, VARCHAR, DateTime
 
 meta = MetaData()
 
-connection = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
+connection = os.environ.get('DATABASE_URL', '')
 
 table_name = "bitcoin_data"
 table_name2 = "mix_data"
@@ -21,22 +21,12 @@ if not engine.has_table(table_name):
 
     new_table = Table(
         table_name, meta,
-        Column('date', DATETIME),
+        Column('date', DateTime),
         Column('close', Float),
         Column('real', Boolean)   
     )
 
     meta.create_all(engine)
-    
-    # seed_data = list()
-
-    # with open('./data/combine.csv', newline='') as input_file:
-    #     reader = csv.DictReader(input_file)       #csv.reader is used to read a file
-    #     for row in reader:
-    #         seed_data.append(row)
-            
-    # with engine.connect() as conn:
-    #     conn.execute(new_table.insert(), seed_data)
 
     # load data
     df = pd.read_csv("./data/bitcoin.csv")
@@ -57,7 +47,7 @@ if not engine.has_table(table_name2):
        'nasdaq_diffpct', 'sp500_diffpct', 'indu_diffpct', 'oil_diffpct']
     new_table = Table(
         table_name2, meta,
-        Column(column_list[0], DATETIME),
+        Column(column_list[0], DateTime),
         Column(column_list[1], Float),
         Column(column_list[2], Float),
         Column(column_list[3], Float),

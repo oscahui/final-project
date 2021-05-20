@@ -36,7 +36,10 @@ Some shortcuts were taken:
     (3) Load the bitcoin.csv data to bitcoin_data table
     (4) Load the combine.csv data to mix_data table
 
-
+4. Model training
+    (1) LSTM model:
+        use create_model(\[suffix=None\]) function to train the LSTM model by using the bitcoin_data table, if no file suffix been input, will generate "good_train_default.h5" and "scale_default.scl" file.
+        use predict(date) function 
 
 
 * `notebooks/00_Preprocessing.ipynb` loads in the source data and preprocesses it

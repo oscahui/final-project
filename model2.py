@@ -4,12 +4,14 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 import joblib
 from sqlalchemy import create_engine
+import os
 
 table_name = "mix_data"
-db = "sqlite:///db.sqlite"
+# os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
+db = os.environ.get('DATABASE_URL', '')
 engine = create_engine(db)
 
-input_list = ["oil_diff", "gold_diff"]
+input_list = ["oil_diff", "gold_diff", "timestamp"]
 
 def output(number):
     if number == -1:
@@ -24,9 +26,13 @@ def create_model():
  #   df = pd.read_csv("./data/combine.csv")
 
     df["trend"] = df.apply(lambda x: 1 if x["btc_diff"] > 0 else (-1 if x["btc_diff"] <0 else 0), axis=1)
-
-    ind_train_start = 360
-    ind_test_start = int((len(df) - 360) * 0.8)
+    df["timestamp"] = pd.to_datetime(df["date"]).astype('int64')
+    
+    # to set ma days so the training data will start from the +1 day
+    # only to use when use ma as feature
+    ma_days = 0
+    ind_train_start = ma_days
+    ind_test_start = int((len(df) - ma_days) * 0.8)
 
     X = df[input_list]
     y = df["trend"]
@@ -62,9 +68,5 @@ def predict(price_dict):
         input[i] = price_dict[i]
     print(input)
     X = pd.DataFrame.from_dict(input)
-#    print(X.head())
     X_scaled = scaler.transform(X)
     return  output(model.predict(X_scaled)[0])
- #   print(model.predict(X_scaled))
-
-#create_model()
