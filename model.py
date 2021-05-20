@@ -136,5 +136,5 @@ def predict_date(date, model_file=None, scaler_file=None):
 
 # testing
 # create_model()
-dt = datetime.strptime("20210520", "%Y%m%d").date()
-print(f"Predict Date {dt}: {predict_date(dt)}")
+# dt = datetime.strptime("20210520", "%Y%m%d").date()
+# print(f"Predict Date {dt}: {predict_date(dt)}")
