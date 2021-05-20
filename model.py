@@ -146,6 +146,6 @@ def predict_date(date, suffix=None):
 
 
 # testing
-create_model()
+#create_model()
 dt = datetime.strptime("20210520", "%Y%m%d").date()
 print(f"Predict Date {dt}: {predict_date(dt)}")
