@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
+import globalvar
+from datetime import datetime
+import joblib
 
 # Load data
 engine = create_engine("sqlite:///../data/bitcoin.sqlite")
@@ -23,7 +26,7 @@ X_train = []
 y_train = []
 
 # define how many days to use LSTM
-n_days = 60
+n_days = globalvar.lstm_days
 
 for i in range(n_days, len(train_data)):
     X_train.append(train_data[i-n_days:i, 0])
@@ -72,5 +75,7 @@ while(not stop):
     rmse = np.sqrt(np.square(np.subtract(y_test, prediction)).mean())
     print(f"RMSE: {rmse}")
     if rmse < rmse_limit:
-        model.save("good_trained.h5")
+        dt = datetime.now().strftime('%Y%m%d_%H%M%S')
+        joblib.dump(scaler, f'scaler_{dt}.scl')
+        model.save(f"good_trained_{dt}.h5")
         stop = True
