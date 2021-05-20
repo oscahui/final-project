@@ -90,7 +90,7 @@ def create_model(suffix=None):
 def predict_nextday(df_source, model_file=None, scaler_file=None):
     #Load Data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
-    df["Date"] = pd.to_datetime(df['Date']).dt.date
+    df["date"] = pd.to_datetime(df['date']).dt.date
 
     #Load Model
     if model_file is None:
