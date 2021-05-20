@@ -83,7 +83,7 @@ def create_model(suffix=None):
             else:
                 suf = suffix
             joblib.dump(scaler, f"scaler_{suf}.scl")
-            model.save(f"good_trained_{suf}.h5")
+            joblib.dump(model, f"good_trained_{suf}.h5")
             stop = True
 
 # predict next day
@@ -99,7 +99,7 @@ def predict_nextday(df_source, model_file=None, scaler_file=None):
     if scaler_file is None:
         scaler_file =f"scaler_{default_suffix}.scl"
     
-    model = load_model(model_file)
+    model = joblib.load(model_file)
     scaler = joblib.load(scaler_file)
     new_df = df_source.filter(["close"])
     last_n_days = new_df[-n_days:].values
