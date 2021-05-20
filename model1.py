@@ -144,8 +144,3 @@ def predict_date(date, suffix=None):
     print(df.loc[df["date"]>initial_date])
     return predict
 
-
-# testing
-#create_model()
-dt = datetime.strptime("20210520", "%Y%m%d").date()
-print(f"Predict Date {dt}: {predict_date(dt)}")
