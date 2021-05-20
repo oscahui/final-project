@@ -43,7 +43,7 @@ def create_model(suffix=None):
     X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 
     stop = False
-    rmse_limit = 2000
+    rmse_limit = 3000
 
     # make sure RMSE < 2000
     while(not stop):
@@ -84,7 +84,7 @@ def create_model(suffix=None):
             else:
                 suf = suffix
             joblib.dump(scaler, f"scaler_{suf}.scl")
-            joblib.dump(model, f"good_trained_{suf}.h5")
+            model.save(f"good_trained_{suf}.h5")
             stop = True
 
 # predict next day
@@ -103,7 +103,7 @@ def predict_nextday(df_source, suffix=None):
         model_file = f"good_trained_{suffix}.h5"
         scaler_file =f"scaler_{suffix}.scl"
     
-    model = joblib.load(model_file)
+    model = load_model(model_file)
     scaler = joblib.load(scaler_file)
     new_df = df_source.filter(["close"])
     last_n_days = new_df[-n_days:].values
@@ -126,19 +126,26 @@ def predict_date(date, suffix=None):
         return None
     while(current_date < date):
         current_date = current_date + timedelta(days=1)
-        current_predict = predict_nextday(df, suffix=suffix)
+        if suffix is None:
+            current_predict = predict_nextday(df)
+        else:
+            current_predict = predict_nextday(df, suffix)
         columns = df.columns
         df = df.append({
             columns[0] : current_date,
             columns[1] : current_predict,
             columns[2] : 0
         }, ignore_index=True)
-    predict = predict_nextday(df, suffix=suffix)
+    predict = None
+    if suffix is None:
+        predict = predict_nextday(df)
+    else:
+        predict = predict_nextday(df, suffix)
     print(df.loc[df["date"]>initial_date])
     return predict
 
 
 # testing
-# create_model()
-# dt = datetime.strptime("20210520", "%Y%m%d").date()
-# print(f"Predict Date {dt}: {predict_date(dt)}")
+create_model()
+dt = datetime.strptime("20210520", "%Y%m%d").date()
+print(f"Predict Date {dt}: {predict_date(dt)}")
