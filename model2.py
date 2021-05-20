@@ -59,7 +59,7 @@ def predict(price_dict):
     scaler = joblib.load("svc.scl")
     input = {}
     for i in input_list:
-        input[i] = [price_dict[i]]
+        input[i] = price_dict[i]
     print(input)
     X = pd.DataFrame.from_dict(input)
 #    print(X.head())
@@ -68,7 +68,3 @@ def predict(price_dict):
  #   print(model.predict(X_scaled))
 
 #create_model()
-#print(output(predict({
-#    input_list[0] : -10000,
-#    input_list[1] : -200000
-#})))
