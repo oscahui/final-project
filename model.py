@@ -1,3 +1,4 @@
+from pickle import NONE
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
@@ -12,7 +13,7 @@ table_name = "bitcoin_data"
 n_days = 60
 db = "sqlite:///db.sqlite"
 default_suffix = "default"
-engine = create_engine("db")
+engine = create_engine(db)
 
 # create and train model
 def create_model(suffix=None):
@@ -87,17 +88,20 @@ def create_model(suffix=None):
             stop = True
 
 # predict next day
-def predict_nextday(df_source, model_file=None, scaler_file=None):
+def predict_nextday(df_source, suffix=None):
     #Load Data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
     df["date"] = pd.to_datetime(df['date']).dt.date
 
+    model_file = None
+    scaler_file = None
     #Load Model
-    if model_file is None:
+    if suffix is None:
         model_file = f"good_trained_{default_suffix}.h5"
-
-    if scaler_file is None:
         scaler_file =f"scaler_{default_suffix}.scl"
+    else:
+        model_file = f"good_trained_{suffix}.h5"
+        scaler_file =f"scaler_{suffix}.scl"
     
     model = joblib.load(model_file)
     scaler = joblib.load(scaler_file)
@@ -112,7 +116,7 @@ def predict_nextday(df_source, model_file=None, scaler_file=None):
     predict = scaler.inverse_transform(predict)
     return predict[0,0]
 
-def predict_date(date, model_file=None, scaler_file=None):
+def predict_date(date, suffix=None):
     # Load data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
     df["date"] = pd.to_datetime(df["date"]).dt.date
@@ -122,14 +126,14 @@ def predict_date(date, model_file=None, scaler_file=None):
         return None
     while(current_date < date):
         current_date = current_date + timedelta(days=1)
-        current_predict = predict_nextday(df, model_file, scaler_file)
+        current_predict = predict_nextday(df, suffix=suffix)
         columns = df.columns
         df = df.append({
             columns[0] : current_date,
             columns[1] : current_predict,
             columns[2] : 0
         }, ignore_index=True)
-    predict = predict_nextday(df, model_file, scaler_file)
+    predict = predict_nextday(df, suffix=suffix)
     print(df.loc[df["date"]>initial_date])
     return predict
 

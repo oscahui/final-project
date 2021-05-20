@@ -3,11 +3,25 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 import joblib
+from sqlalchemy import create_engine
+
+table_name = "mix_data"
+db = "sqlite:///db.sqlite"
+engine = create_engine(db)
 
 input_list = ["oil_diff", "gold_diff"]
 
+def output(number):
+    if number == -1:
+        return "down"
+    elif number == 1:
+        return "up"
+    else:
+        return "nochange"
+
 def create_model():
-    df = pd.read_csv("./data/combine.csv")
+    df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
+ #   df = pd.read_csv("./data/combine.csv")
 
     df["trend"] = df.apply(lambda x: 1 if x["btc_diff"] > 0 else (-1 if x["btc_diff"] <0 else 0), axis=1)
 
@@ -48,13 +62,13 @@ def predict(price_dict):
         input[i] = [price_dict[i]]
     print(input)
     X = pd.DataFrame.from_dict(input)
-    print(X.head())
+#    print(X.head())
     X_scaled = scaler.transform(X)
-
-    print(model.predict(X_scaled))
+    return  output(model.predict(X_scaled)[0])
+ #   print(model.predict(X_scaled))
 
 #create_model()
-#predict({
-#    input_list[0] : 11500,
-#    input_list[1] : 111100
-#})
+#print(output(predict({
+#    input_list[0] : -10000,
+#    input_list[1] : -200000
+#})))
