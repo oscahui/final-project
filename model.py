@@ -12,15 +12,15 @@ table_name = "bitcoin_data"
 n_days = 60
 db = "sqlite:///db.sqlite"
 default_suffix = "default"
-engine = create_engine("sqlite:///db.sqlite")
+engine = create_engine("db")
 
 # create and train model
 def create_model(suffix=None):
     # Load data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
-    df["Date"] = pd.to_datetime(df['Date']).dt.date
+    df["date"] = pd.to_datetime(df["date"]).dt.date
     # define data to use
-    dataset = df[['Close']].values
+    dataset = df[['close']].values
     training_len = int(len(dataset)*0.8)
 
     # scale the data
@@ -101,7 +101,7 @@ def predict_nextday(df_source, model_file=None, scaler_file=None):
     
     model = load_model(model_file)
     scaler = joblib.load(scaler_file)
-    new_df = df_source.filter(["Close"])
+    new_df = df_source.filter(["close"])
     last_n_days = new_df[-n_days:].values
     last_n_days_scaled = scaler.transform(last_n_days)
     X_test = []
@@ -115,8 +115,8 @@ def predict_nextday(df_source, model_file=None, scaler_file=None):
 def predict_date(date, model_file=None, scaler_file=None):
     # Load data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
-    df["Date"] = pd.to_datetime(df['Date']).dt.date
-    initial_date = max(df["Date"])
+    df["date"] = pd.to_datetime(df["date"]).dt.date
+    initial_date = max(df["date"])
     current_date = initial_date
     if date < initial_date:
         return None
@@ -130,7 +130,7 @@ def predict_date(date, model_file=None, scaler_file=None):
             columns[2] : 0
         }, ignore_index=True)
     predict = predict_nextday(df, model_file, scaler_file)
-    print(df.loc[df["Date"]>initial_date])
+    print(df.loc[df["date"]>initial_date])
     return predict
 
 
