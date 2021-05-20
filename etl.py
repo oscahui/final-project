@@ -1,61 +1,79 @@
 import os
 import csv
+import pandas as pd
 from sqlalchemy import create_engine, Table, Column, MetaData
 from sqlalchemy import DateTime, Float, Integer, String
-from sqlalchemy.sql.sqltypes import VARCHAR
+from sqlalchemy.sql.sqltypes import Boolean, VARCHAR
 
 meta = MetaData()
 
 connection = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
 
+table_name = "bitcoin_data"
+
 print("connection to databse: " + connection)
 engine = create_engine(connection)
 
-if not engine.has_table("bitcoin_data"):
+if not engine.has_table(table_name):
     print("Creating Table")
 
     new_table = Table(
-        'bitcoin_data', meta,Column('date', String),
+        table_name, meta,
+        Column('date', String),
         Column('close', Float),
-        Column('ma_5', Float),
-        Column('ma_10', Float),
-        Column('ma_20', Float),
-        Column('ma_30', Float),
-        Column('ma_60', Float),
-        Column('ma_90', Float),
-        Column('ma_180', Float),
-        Column('ma_240', Float),
-        Column('ma_360', Float),
-        Column('gold', Float),
-        Column('nasdaq_comp', Float),
-        Column('sp500', Float),
-        Column('indu', Float),
-        Column('oil', Float),
-        Column('btc_diff', Float),
-        Column('gold_diff', Float),
-        Column('nasdaq_diff', Float),
-        Column('sp500_diff', Float),
-        Column('indu_diff', Float),
-        Column('oil_diff', Float),
-        Column('btc_diffpct', Float),
-        Column('gold_diffpct', Float),
-        Column('nasdaq_diffpct', Float),
-        Column('sp500_diffpct', Float),
-        Column('indu_diffpct', Float),
-        Column('oil_diffpct', Float),       
+        Column('real', Boolean)   
     )
 
     meta.create_all(engine)
     
-    seed_data = list()
+    # seed_data = list()
 
-    with open('./data/combine.csv', newline='') as input_file:
-        reader = csv.DictReader(input_file)       #csv.reader is used to read a file
-        for row in reader:
-            seed_data.append(row)
+    # with open('./data/combine.csv', newline='') as input_file:
+    #     reader = csv.DictReader(input_file)       #csv.reader is used to read a file
+    #     for row in reader:
+    #         seed_data.append(row)
             
-    with engine.connect() as conn:
-        conn.execute(new_table.insert(), seed_data)
+    # with engine.connect() as conn:
+    #     conn.execute(new_table.insert(), seed_data)
+
+    # load data
+    df = pd.read_csv("./data/bitstampUSD_1-min_data_2012-01-01_to_2021-03-31.csv")
+    df1 = pd.read_csv("./data/HistoricalData20210517.csv", parse_dates=["Date"])
+
+    # process dataframe from kaggle
+    df = df.dropna()
+
+    # timestamp to datetime
+    df["DateTime"] = pd.to_datetime(df['Timestamp'],unit='s')
+    df["Date"] = df["DateTime"].dt.date
+    df["Time"] = df["DateTime"].dt.time
+
+    # keep only useful columns and add a column indicate weather the close value is acctual or predict
+    df = df[["Date","Time", "Close"]]
+    df["Real"] = True
+
+    # get the date closing price then sort and reset index
+    df = df.groupby("Date").max("Time")
+    df = df.reset_index()
+    df = df.sort_values(by="Date")
+    df = df.reset_index(drop=True)
+
+    # process dataframe from nasdaq
+    df1 = df1.sort_values(by="Date")
+    df1 = df1.reset_index(drop=True)
+    df1 = df1[["Date", "Close/Last"]]
+    df1.columns = ["Date", "Close"]
+    df1["Date"] = df1["Date"].dt.date
+    df1["Real"] = True
+
+    # concat two dataset 
+    df_max_date = max(df["Date"])
+    df = pd.concat([df, df1.loc[df1["Date"]>df_max_date]])
+
+    # reset index again
+    df = df.reset_index(drop=True)
+
+    df.to_sql(table_name, engine, if_exists="replace", index=False)
 
     print("Data Import Successful")
 else:
