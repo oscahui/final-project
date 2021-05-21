@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 import os
 
 table_name = "mix_data"
-# os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
+os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
 db = os.environ.get('DATABASE_URL', '')
 engine = create_engine(db)
 
@@ -29,7 +29,7 @@ def output(number):
     else:
         return "nochange"
 
-def create_model():
+def create_model(feature_list=input_list):
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
  #   df = pd.read_csv("./data/combine.csv")
 
@@ -42,7 +42,7 @@ def create_model():
     ind_train_start = ma_days
     ind_test_start = int((len(df) - ma_days) * 0.8)
 
-    X = df[input_list]
+    X = df[feature_list]
     y = df["trend"]
 
     X_train = X.iloc[ind_train_start:ind_test_start]

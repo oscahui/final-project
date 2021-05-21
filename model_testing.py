@@ -1,16 +1,12 @@
 import model1
 import model2
-import etl_func
 from datetime import datetime
-
-etl_func.init_table()
 
 # testing
 model1.create_model()
 dt = datetime.strptime("20210523", "%Y%m%d").date()
 print(f"Model1 Predict Date {dt}: {model1.predict_date(dt)}")
-
-
+print(f"Model1 Predict Date {dt}: {(model1.predict_date_df(dt)).head()}")
 
 # test model2
 column_list = ['date', 'close', 'real', 
@@ -30,5 +26,5 @@ in_dict = {
     input_list[4] : [20],
     input_list[5] : [1621555200000000000]
 }
-model2.create_model()
+model2.create_model(input_list)
 print(f"Model2 Predict Price: {model2.predict(in_dict)}")
