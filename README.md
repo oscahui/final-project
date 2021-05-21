@@ -42,13 +42,13 @@ Some shortcuts were taken:
     (1) Get the bitcoin close price and ma price then save to bitcoin.csv
     (2) Get the bitcoin close price and other index price and save to combine.csv
 
-    In etl_func.py use init_table() function to load the data to postgresql
+    In etl_func.py use init_table() function ls -lto load the data to postgresql
     (3) Load the bitcoin.csv data to bitcoin_data table
     (4) Load the combine.csv data to mix_data table
 
 4. Model training
     (1) LSTM model (model1.py):
-        use create_model() function to train the LSTM model by using the bitcoin_data table, by default it will generate "good_train_default.h5" and "scale_default.scl" file so we can reuse the model.
+        use create_model() function to train the LSTM model by using the bitcoin_data table, by default it will generate "good_train_default.h5" and "scale_default.scl" file so we can reuse the model. Can be used with parameter "suffix=<str>" and "rmse_limit=<int>".
         use predict_date(date) function to predict and the close price for a specific date
         use predict_date(date) function to predict all the close price from the last date in the database to the specific date, and return a dataframe for visualization.
 
@@ -56,8 +56,10 @@ Some shortcuts were taken:
         use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and i will generate a "svc.h5" and "svc.scl" file so we can reuse the model.
         use predict(list_data) function to predict will the price go up, down or nochange for the input timestamp
 
-5. Web service route:
+5. There are 2 files etl_test.py and model_testing.py to test the etl and model functions
 
+6. Web service route:
+    
 
 
 
