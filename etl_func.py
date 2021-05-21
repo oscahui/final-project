@@ -7,7 +7,7 @@ from sqlalchemy.sql.sqltypes import Boolean, VARCHAR, DateTime
 
 meta = MetaData()
 
-os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
+# os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
 connection = os.environ.get('DATABASE_URL', '')
 
 bitcoin_table = "bitcoin_data"

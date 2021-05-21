@@ -42,7 +42,7 @@ Some shortcuts were taken:
     (1) Get the bitcoin close price and ma price then save to bitcoin.csv
     (2) Get the bitcoin close price and other index price and save to combine.csv
 
-    Then use etl.py to load the data to postgresql
+    In etl_func.py use init_table() function to load the data to postgresql
     (3) Load the bitcoin.csv data to bitcoin_data table
     (4) Load the combine.csv data to mix_data table
 
