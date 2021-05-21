@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Titanic Ticket Checker</title>
+    <title>Bitcoin Machine Learning</title>
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -17,77 +17,35 @@
 
 <body>
     <!-- Creates the Overall Grid -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Titanic Ticket Checker</h1>
-            </div>
+    <div class="container-fluid">                
+        <div class="jumbotron" style="text-align: center">
+            <h1>Let's Get Rich</h1>
+            <h2>"How to make money in quick and easy way"</h2>
         </div>
 
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputAge">Age</label>
-                    <input type="number" class="form-control" id="inputAge" placeholder="Age in Years">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputGender">Gender</label>
-                    <select class="form-control" id="inputGender">
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputPassengerClass">Passenger Class</label>
-                    <select class="form-control" id="inputPassengerClass">
-                        <option value="1">First Class</option>
-                        <option value="2">Second Class</option>
-                        <option value="3">Third Class</option>
-                    </select>
-
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputNumberOfSiblings">Number Of Siblings / Spouses</label>
-                    <input type="number" class="form-control" id="inputNumberOfSiblings" placeholder="# Siblings / Spouses aboard">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputNumberOfParents">Number Of Parents / Children</label>
-                    <input type="number" class="form-control" id="inputNumberOfParents" placeholder="# Parents / Children aboard">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputFare">Fare</label>
-                    <input type="number" class="form-control" id="inputFare" placeholder="Fare">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputPortOfEmbarkment">Port of Embarkation</label>
-                    <select class="form-control" id="inputPortOfEmbarkment">                        
-                        <option value="C">Cherbourg</option>
-                        <option value="Q">Queenstown</option>
-                        <option value="S">Southampton</option>
-                    </select>
-
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <button id="doCheckTicket" type="submit" class="btn btn-primary">Check My Ticket</button>
-                </div>
-            </div>
-        </form>
-
         <div class="row">
-            <div class="form-group col-md-12"></div>
+            <div class="col-md-6">
+                <form>
+                    <label for="fdate">Date:</label><br>
+                    <input type="date" id="fdate" name="fdate"><br>
+                    <label for="goldp">Enter Gold Price:</label><br>
+                    <input type="number" id="goldp" name="goldp" step="0.01"><br>
+                    <label for="oilp">Enter Oil Price:</label><br>
+                    <input type="number" id="oilp" name="oilp" step="0.01"><br>
+                    <input type="submit" value="Tell me!">
+                  </form> 
+            </div>
+            <div class="col-md-6">
+                <h2>Data Line Graph</h2>
+                <div id="line-plot"></div>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-12">
-                <div id="alertOutcome" class="alert alert-primary" role="alert">
-                </div>
-            </div>
+
+
+
         </div>
+        
     </div>
 
     </div>
