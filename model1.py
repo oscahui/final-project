@@ -123,6 +123,7 @@ def predict_date(date, suffix=None):
     # Load data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
     df["date"] = pd.to_datetime(df["date"]).dt.date
+    df=df[["date", "close", "real"]]
     initial_date = max(df["date"])
     current_date = initial_date
     if date < initial_date:
@@ -147,3 +148,25 @@ def predict_date(date, suffix=None):
     print(df.loc[df["date"]>initial_date])
     return predict
 
+def predict_date_df(date, suffix=None):
+    # Load data
+    df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
+    df["date"] = pd.to_datetime(df["date"]).dt.date
+    df=df[["date", "close", "real"]]
+    initial_date = max(df["date"])
+    current_date = initial_date
+    if date < initial_date:
+        return None
+    while(current_date <= date):
+        current_date = current_date + timedelta(days=1)
+        if suffix is None:
+            current_predict = predict_nextday(df)
+        else:
+            current_predict = predict_nextday(df, suffix)
+        columns = df.columns
+        df = df.append({
+            columns[0] : current_date,
+            columns[1] : current_predict,
+            columns[2] : 0
+        }, ignore_index=True)
+    return df

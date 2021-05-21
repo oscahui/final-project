@@ -11,7 +11,15 @@ table_name = "mix_data"
 db = os.environ.get('DATABASE_URL', '')
 engine = create_engine(db)
 
-input_list = ["oil_diff", "gold_diff", "timestamp"]
+
+column_list = ['date', 'close', 'real', 
+        'gold', 'comp', 'spx', 'indu', 'oil', 
+        'btc_diff', 'gold_diff', 'comp_diff', 'spx_diff', 'indu_diff', 'oil_diff',
+        'btc_diffpct', 'gold_diffpct', 'comp_diffpct', 'spx_diffpct', 'indu_diffpct', 'oil_diffpct',
+        'timestamp']
+
+input_list = column_list[3:8]
+input_list.append("timestamp")
 
 def output(number):
     if number == -1:
