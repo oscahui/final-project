@@ -53,13 +53,24 @@ Some shortcuts were taken:
         use predict_date(date) function to predict all the close price from the last date in the database to the specific date, and return a dataframe for visualization.
 
     (2) Features model (model2.py):
-        use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and i will generate a "svc.h5" and "svc.scl" file so we can reuse the model.
+        use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and i will generate a "svc.h5" and "svc.scl" file so we can reuse the model. Can be used with parameter "feature_list=<list>" to specify the features to train the model.
         use predict(list_data) function to predict will the price go up, down or nochange for the input timestamp
 
-5. There are 2 files etl_test.py and model_testing.py to test the etl and model functions
+5. There are 3 files etl_test.py / model1_testing.py /model2_testing.py to test the etl and model functions
 
 6. Web service route:
-    
+    Thoughts:
+    (1) 1 route to do the etl
+    Direct access with an <a> element
+
+    (2) 1 route to implement the model1.predict_date function, and return a predict price to show
+    (3) 1 route to implement the model1.predict_date function, and return a dataframe so we can draw a predict trend to the future
+    For the these 2, front end should have an input of date to send to the route
+
+    (4) 1 route to implement the model2.create_model and model2.predict together, and return a predict trend of "up", "down", "nochange" for a given dict of feature values
+    For this one, the front end should have some inputs for different features to send to the route
+
+
 
 
 
