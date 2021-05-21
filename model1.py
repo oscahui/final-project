@@ -19,7 +19,7 @@ default_suffix = "default"
 engine = create_engine(db)
 
 # create and train model
-def create_model(suffix=None):
+def create_model(suffix=None, rmse_limit = 10000):
     # Load data
     df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
     df["date"] = pd.to_datetime(df["date"]).dt.date
@@ -46,9 +46,8 @@ def create_model(suffix=None):
     X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 
     stop = False
-    rmse_limit = 3000
 
-    # make sure RMSE < 2000
+    # make sure RMSE < rmselimit
     while(not stop):
         # define model and compile
         model = Sequential()
