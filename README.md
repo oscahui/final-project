@@ -1,6 +1,3 @@
-# GetRichQuick
-Know how rich you will be if you invest in BitCoin!
-
 Some shortcuts were taken:
 
 
