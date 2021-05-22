@@ -84,25 +84,25 @@ def create_model(suffix=None, rmse_limit = 10000):
                 suf = default_suffix
             else:
                 suf = suffix
-            joblib.dump(scaler, f"scaler_{suf}.scl")
-            model.save(f"good_trained_{suf}.h5")
+            joblib.dump(scaler, f"model/scaler_{suf}.scl")
+            model.save(f"model/good_trained_{suf}.h5")
             stop = True
 
 # predict next day
 def predict_nextday(df_source, suffix=None):
     #Load Data
-    df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
-    df["date"] = pd.to_datetime(df['date']).dt.date
+    #df = pd.read_sql_query(f"SELECT * FROM {table_name}", engine)
+    #df["date"] = pd.to_datetime(df['date']).dt.date
 
     model_file = None
     scaler_file = None
     #Load Model
     if suffix is None:
-        model_file = f"good_trained_{default_suffix}.h5"
-        scaler_file =f"scaler_{default_suffix}.scl"
+        model_file = f"model/good_trained_{default_suffix}.h5"
+        scaler_file =f"model/scaler_{default_suffix}.scl"
     else:
-        model_file = f"good_trained_{suffix}.h5"
-        scaler_file =f"scaler_{suffix}.scl"
+        model_file = f"model/good_trained_{suffix}.h5"
+        scaler_file =f"model/scaler_{suffix}.scl"
     
     model = load_model(model_file)
     scaler = joblib.load(scaler_file)

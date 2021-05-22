@@ -7,46 +7,95 @@
     <title>Bitcoin Machine Learning</title>
 
     <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 
 <body>
     <!-- Creates the Overall Grid -->
-    <div class="container-fluid">                
-        <div class="jumbotron" style="text-align: center">
-            <h1>Let's Get Rich</h1>
-            <h2>"How to make money in quick and easy way"</h2>
+    <div class="container">
+        <div class="row" style="text-align: center">
+            <div class="col-md-12">
+                <h1>Let's Get Rich</h1>
+                <h2>"How to make money in Bitcoin the quick and easy way"</h2>
+            </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <form>
+        <form>
+            <div class="form-row">
+                <div class="form-group  col-md-4">
+                    <label for="predictType">Chose Prediction Type</label>
+                    <select class="form-control drpodown" id="predictType">
+                        <option value="byvalues">Predict By Date and Values</option>
+                        <option value="bydate">Predict Only By Date</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
                     <label for="fdate">Date:</label><br>
-                    <input type="date" id="fdate" name="fdate"><br>
-                    <label for="goldp">Enter Gold Price:</label><br>
-                    <input type="number" id="goldp" name="goldp" step="0.01"><br>
-                    <label for="oilp">Enter Oil Price:</label><br>
-                    <input type="number" id="oilp" name="oilp" step="0.01"><br>
-                    <input type="submit" value="Tell me!">
-                  </form> 
+                    <input type="date" id="dateval" name="fdate"><br>
+                </div>
+                <div class="form-group  col-md-3">
+                    <label for="goldval">Enter Gold Value:</label><br>
+                    <input type="number" id="goldval" name="goldval" step="0.01"><br>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>Data Line Graph</h2>
-                <div id="line-plot"></div>
+            <div class="form-row">
+                <div class="form-group  col-md-3">
+                    <label for="compval">Enter Comp Value:</label><br>
+                    <input type="number" id="compval" name="compval" step="0.01"><br>
+                </div>
+                <div class="form-group  col-md-3">
+                    <label for="induval">Enter Indu Value:</label><br>
+                    <input type="number" id="induval" name="induval" step="0.01"><br>
+                </div>
             </div>
-        </div>
+            <div class="form-row">
+                <div class="form-group  col-md-3">
+                    <label for="oilval">Enter Oil Value:</label><br>
+                    <input type="number" id="oilval" name="oilval" step="0.01"><br>
+                </div>
+                <div class="form-group  col-md-3">
+                    <label for="spxval">Enter spx Value:</label><br>
+                    <input type="number" id="spxval" name="spxval" step="0.01"><br>
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <button id="tellMe" type="submit" class="btn btn-primary">Tell Me!!!</button>
+                </div>
+                <div class="form-group col-md-3">
+                    <div id="alertOutcome" class="alert alert-primary" role="alert">
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+
+
+
+
         <div class="row">
-
-
-
+            <div class="col-md-3 col-md12">
+                <h3>Data Line Graph</h2>
+                    <div id="line-plot"></div>
+            </div>
         </div>
-        
-    </div>
 
     </div>
 

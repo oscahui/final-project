@@ -1,36 +1,37 @@
 console.log("App Ready");
 
-d3.select("#doCheckTicket").on("click", (event) => doCheckTicket(event));
+d3.select("#tellMe").on("click", (event) => tellMe(event));
 
 d3.select("#alertOutcome").style("display", "none");
 
-function doCheckTicket(event) {
+function tellMe(event) {
     d3.event.preventDefault();
     d3.select("#alertOutcome").style("display", "none");
-    console.log("Checking Ticket");
+    console.log("Checking Bitcoin Price");
 
-    let age = d3.select("#inputAge").node().value;
-    let gender = d3.select("#inputGender").node().value;
-    let passengerClass = d3.select("#inputPassengerClass").node().value;
-    let numberOfSiblings = d3.select("#inputNumberOfSiblings").node().value;
-    let numberOfParents = d3.select("#inputNumberOfParents").node().value;
-    let fare = d3.select("#inputFare").node().value;
-    let portOfEmbarkment = d3.select("#inputPortOfEmbarkment").node().value;
+    let dateval = d3.select("#dateval").node().value;
+    let goldval = d3.select("#goldval").node().value;
+    let compval = d3.select("#compval").node().value;
+    let induval = d3.select("#induval").node().value;
+    let oilval = d3.select("#oilval").node().value;
+    let spxval = d3.select("#spxval").node().value;
+    var timestamp = Date.parse(dateval)*1000000
+    
+    console.log(timestamp);
 
     let data = {
-        "age": parseFloat(age),
-        "gender": gender,
-        "passengerClass": parseInt(passengerClass),
-        "numberOfSiblings": parseInt(numberOfSiblings),
-        "numberOfParents": parseInt(numberOfParents),
-        "fare": parseFloat(fare),
-        "portOfEmbarkment": portOfEmbarkment,
+        "gold": parseFloat(goldval),
+        "comp": parseFloat(compval),
+        "spx" : parseFloat(spxval),
+        "indu" : parseFloat(induval),
+        "oil" : parseFloat(oilval),
+        "timestamp" : timestamp,
     }
 
     console.log(data);
 
     d3.json(
-        "/predict", {
+        "/predict/feature", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -45,20 +46,21 @@ function doCheckTicket(event) {
 
 function showResult(data) {
     console.log("showResult");
-    console.log(data);
+    console.log(data["predict"]);
+    var predict = data["predict"];
 
-    var outcome = "Unknown";
+    // var outcome = "Unknown";
     let alertOutcomeDisplay = d3.select("#alertOutcome");
 
-    if (data["result"][0] == 1) {
-        outcome = "Survived";
-        alertOutcomeDisplay.attr("class", "alert alert-success");
-    } else if (data["result"][0] == 0) {
-        outcome = "Dead";
-        alertOutcomeDisplay.attr("class", "alert alert-info");
-    }
+    // if (data["result"][0] == 1) {
+    //     outcome = "Survived";
+    //     alertOutcomeDisplay.attr("class", "alert alert-success");
+    // } else if (data["result"][0] == 0) {
+    //     outcome = "Dead";
+    //     alertOutcomeDisplay.attr("class", "alert alert-info");
+    // }
 
-    alertOutcomeDisplay.text(outcome);
+    alertOutcomeDisplay.text(`Bitcoin Value is going ${data["predict"]}!!!!!!`);
     alertOutcomeDisplay.style("display", "block");
 
 }

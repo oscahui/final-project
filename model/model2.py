@@ -65,12 +65,12 @@ def create_model(feature_list=input_list):
 
     grid.fit(X_train_scaled, y_train)
 
-    joblib.dump(grid, "svc.h5")
-    joblib.dump(X_scaler, "svc.scl")
+    joblib.dump(grid, "model/svc.h5")
+    joblib.dump(X_scaler, "model/svc.scl")
 
 def predict(price_dict):
-    model = joblib.load("svc.h5")
-    scaler = joblib.load("svc.scl")
+    model = joblib.load("model/svc.h5")
+    scaler = joblib.load("model/svc.scl")
     input = {}
     for i in input_list:
         input[i] = price_dict[i]
