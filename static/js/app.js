@@ -64,6 +64,9 @@ function showResult(data) {
     console.log("showResult");
     console.log(data["predict"]);
     var predict = data["predict"];
+    if (predictType !== "byvalues"){      
+        console.log(data["trend"]);
+    }
 
     // var outcome = "Unknown";
     let alertOutcomeDisplay = d3.select("#alertOutcome");

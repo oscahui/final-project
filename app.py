@@ -89,13 +89,11 @@ def predict_date():
     p_type = data["type"]
     date = datetime.strptime(data["date"], "%Y-%m-%d").date()
     result = {}
+
     # to return just the predict price for the date
-    if p_type == "price":
-        result["price"] = float(model1.predict_date(date))
-    # to return the whole prediction dataframe
-    elif p_type == "trend":
-        result["trend"] = (model1.predict_date_df(date)
-                           ).to_json(orient="split")
+    result["predict"] = float(model1.predict_date(date))
+    #result["trend"] = (model1.predict_date_df(date)).to_json(orient="split")
+
     return jsonify(result)
 
 
