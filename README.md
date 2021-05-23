@@ -4,7 +4,10 @@
 
     1. Git pull the project folder. 
 
-    2. [Data Preparation] Download the following datasets copy the files into ..\final-project\data: 
+    2. [Data Preparation] 
+    
+    Download the following datasets copy the files into ..\final-project\data: 
+    
     - Bitcoin Jan 2012 to March 2021 - https://www.kaggle.com/mczielinski/bitcoin-historical-data/download.
 
     - Bitcoin history after March 2021 - https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical. Rename to HistoricalData_BTC. 
@@ -22,7 +25,8 @@
 ![Alt text](images/data.PNG?raw=true "features")
 
     
-    3. [ETL] Use \notebooks\DataProcess.ipynb OR notebooks/DataProcess.py to:
+    3. [ETL] 
+    Use \notebooks\DataProcess.ipynb OR notebooks/DataProcess.py to:
     (1) Get the bitcoin close price and ma price, and save to bitcoin.csv.
     (2) Get the bitcoin close price and other index price, and save to combine.csv.
     
