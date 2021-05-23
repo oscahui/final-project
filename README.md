@@ -37,15 +37,12 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
     Rename to HistoricalData_Oil.
 
 ![Alt text](images/data.PNG?raw=true "features")
-
     
     3. [ETL] 
     Use \notebooks\DataProcess.ipynb to:
     (1) Get the bitcoin close price and ma price, and save to bitcoin.csv.
     (2) Get the bitcoin close price and other index price, and save to combine.csv.
     
-![Alt text](images/data2.PNG?raw=true "features")  
-
     In etl_func.py use init_table() function ls -lto load the data to postgresql
     (3) Load the bitcoin.csv data to bitcoin_data table
     (4) Load the combine.csv data to mix_data table
