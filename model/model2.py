@@ -7,7 +7,6 @@ from sqlalchemy import create_engine
 import os
 
 table_name = "mix_data"
-# os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:168168@localhost:5432/bitcoin_db"
 db = os.environ.get('DATABASE_URL', '')
 engine = create_engine(db)
 

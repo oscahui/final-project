@@ -1,9 +1,9 @@
 import pandas as pd
-from flask import (Flask,render_template,jsonify,request,redirect)
+from flask import (Flask, render_template, jsonify, request, redirect)
 import simplejson
 from flask_sqlalchemy import SQLAlchemy
 from joblib import load
-import datetime
+from datetime import datetime
 import os
 import model.model1 as model1
 import model.model2 as model2
@@ -35,6 +35,8 @@ def index():
     return render_template("index.html")
 
 # route to do the initial data load to database
+
+
 @app.route("/loaddata")
 def load_data():
     etl_func.init_table()
@@ -49,13 +51,15 @@ def load_data():
 #     "spx" :       [43000],
 #     "indu" :        [35000],
 #     "oil" :         [20],
-#     "timestamp" :   [1621555200000000000] 
+#     "timestamp" :   [1621555200000000000]
 # }
 @app.route("/predict/feature", methods=["POST"])
 def predict_feature():
     data = request.json
     columns = list(data.keys())
-    #model2.create_model(columns)
+
+    # model2.create_model(columns)
+
     # create dataframe from received data
     # rename columns and sort as per the
     # order columns were trained on
@@ -69,7 +73,7 @@ def predict_feature():
     predict = model2.predict(df)
     print(f"predicted Value: {predict}")
     return jsonify({
-        "predict" : predict
+        "predict": predict
     })
 
 
@@ -83,14 +87,15 @@ def predict_feature():
 def predict_date():
     data = request.json
     p_type = data["type"]
-    date = datetime.strptime(data["date"], "%d/%m/%Y").date()
+    date = datetime.strptime(data["date"], "%Y-%m-%d").date()
     result = {}
     # to return just the predict price for the date
-    if p_type == "price":     
+    if p_type == "price":
         result["price"] = float(model1.predict_date(date))
     # to return the whole prediction dataframe
     elif p_type == "trend":
-        result["trend"] = (model1.predict_date_df(date)).to_json(orient="split")
+        result["trend"] = (model1.predict_date_df(date)
+                           ).to_json(orient="split")
     return jsonify(result)
 
 
