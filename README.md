@@ -1,7 +1,11 @@
 # Overview
 
 # Data Preparation
-1. Download the following datasets: 
+
+1. Git pull the project folder. 
+
+
+2. Download the following datasets copy the files into ..\final-project\data: 
 - Bitcoin Jan 2012 to March 2021 - https://www.kaggle.com/mczielinski/bitcoin-historical-data/download.
 
 - Bitcoin history after March 2021 - https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical. Rename to HistoricalData_BTC. 
@@ -16,10 +20,8 @@
 
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
 
-![Alt text](images/data.png?raw=true "data")
 
-
-2. ETL
+3. ETL
     Use notebooks/DataProcess.py to do the following:
     (1) Get the bitcoin close price and ma price then save to bitcoin.csv
     (2) Get the bitcoin close price and other index price and save to combine.csv
