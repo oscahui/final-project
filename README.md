@@ -16,6 +16,8 @@
 
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
 
+![Alt text](images/data.png?raw=true "data")
+
 
 2. ETL
     Use notebooks/DataProcess.py to do the following:
