@@ -3,26 +3,31 @@
 # Data Preparation
 1. Download the following datasets: 
 - Bitcoin Jan 2012 to March 2021
-https://www.kaggle.com/mczielinski/bitcoin-historical-data/download
-- Bitcoin history after March 2021 
-https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical 
-Rename to HistoricalData_BTC. 
-- Dow Industrials (INDU) 
-https://www.nasdaq.com/market-activity/index/indu/historical
-Rename to HistoricalData_INDU.
-- NASDAQ Composite Index (COMP) 
-https://www.nasdaq.com/market-activity/index/comp/historical
-Rename to HistoricalData_Comp.
-- S&P 500 (SPX) 
-https://www.nasdaq.com/market-activity/index/spx/historical
-Rename to HistoricalData_SPX. 
-- Gold 
-https://www.nasdaq.com/market-activity/stocks/gold/historical
-Rename to HistoricalData_Gold. 
-- Oil
-https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical 
-Rename to HistoricalData_Oil.
+https://www.kaggle.com/mczielinski/bitcoin-historical-data/download.
 
+- Bitcoin history after March 2021 
+https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical. 
+Rename to HistoricalData_BTC. 
+
+- Dow Industrials (INDU) 
+https://www.nasdaq.com/market-activity/index/indu/historical.
+Rename to HistoricalData_INDU.
+
+- NASDAQ Composite Index (COMP) 
+https://www.nasdaq.com/market-activity/index/comp/historical.
+Rename to HistoricalData_Comp.
+
+- S&P 500 (SPX) 
+https://www.nasdaq.com/market-activity/index/spx/historical.
+Rename to HistoricalData_SPX. 
+
+- Gold 
+https://www.nasdaq.com/market-activity/stocks/gold/historical.
+Rename to HistoricalData_Gold. 
+
+- Oil
+https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. 
+Rename to HistoricalData_Oil.
 
 2. ETL
     Use notebooks/DataProcess.py to do the following:
