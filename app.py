@@ -92,7 +92,7 @@ def predict_date():
 
     # to return just the predict price for the date
     result["predict"] = float(model1.predict_date(date))
-    #result["trend"] = (model1.predict_date_df(date)).to_json(orient="split")
+    result["trend"] = (model1.predict_date_df(date)).to_dict(orient="records")
 
     return jsonify(result)
 
