@@ -16,6 +16,7 @@
 
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
 
+
 2. ETL
     Use notebooks/DataProcess.py to do the following:
     (1) Get the bitcoin close price and ma price then save to bitcoin.csv
