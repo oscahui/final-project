@@ -4,8 +4,7 @@
 
     1. Git pull the project folder. 
 
-    2. [Data Preparation] 
-    
+    2. [Data Preparation]     
     Download the following datasets copy the files into ..\final-project\data: 
     
     - Bitcoin Jan 2012 to March 2021
