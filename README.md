@@ -40,7 +40,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
     
     3. [ETL] 
-    Use \notebooks\DataProcess.ipynb OR notebooks/DataProcess.py to:
+    Use \notebooks\DataProcess.ipynb to:
     (1) Get the bitcoin close price and ma price, and save to bitcoin.csv.
     (2) Get the bitcoin close price and other index price, and save to combine.csv.
     
