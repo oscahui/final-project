@@ -2,13 +2,11 @@
 <html lang="en-us">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Bitcoin Machine Learning</title>
 
     <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -19,84 +17,136 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    
+    <script src="https://d3js.org/d3.v5.min.js"></script>   
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="static/js/busy_indicator.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/busy_indicator.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans&family=Raleway&display=swap" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Creates the Overall Grid -->
-    <div class="container">
-        <div class="row" style="text-align: center">
-            <div class="col-md-12">
-                <h1>Let's Get Rich</h1>
-                <h2>"How to make money in Bitcoin the quick and easy way"</h2>
+<body >
+    <div id="busybox" class="bg">
+        <div></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="https://en.wikipedia.org/wiki/Bitcoin" target="_blank"><img
+                        src="../static/img/bitcoin_small.png" alt="CSGO Howl" style="width:40px;height:40px;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <!-- <li><a href="/heatmap" target="popup"
+                            onclick="window.open('/heatmap','name','width=801,height=601')">Heatmap</a></li>
+                    <li><a href="/alldata" target="_blank">All Data</a></li> -->
+                    <!-- <li><a href="#">About</a></li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>     -->
+
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <form>
-            <div class="form-row">
-                <div class="form-group  col-md-4">
-                    <label for="predictType">Chose Prediction Type</label>
-                    <select class="form-control drpodown" id="predictType">
-                        <option value="byvalues">Predict By Date and Values</option>
-                        <option value="bydate">Predict Only By Date</option>
-                    </select>
+
+    <header class="bg-primary py-5 mb-5">
+        <div class="container h-100">
+            <div class="row h-300 align-items-center">
+                <div class="col-lg-12 align-items-center">
+                    <h1 class="pagetitle">LET'S GET RICH QUICK!</h1>
+                    <p class="pagetext">"How to make money with Bitcoin the quick and easy way"</p>
+
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="fdate">Date:</label><br>
-                    <input type="date" id="dateval" name="fdate"><br>
+        </div>
+    </header>
+
+
+    <!-- Creates the Overall Grid -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-12">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="predictType"> Chose Prediction Type </label>
+                        <select class="form-control drpodown" id="predictType">
+                            <option value="byvalues">Predict By Date and Values</option>
+                            <option value="bydate">Predict Only By Date</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group  col-md-3">
-                    <label for="goldval">Enter Gold Value:</label><br>
-                    <input type="number" id="goldval" name="goldval" step="0.01"><br>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="fdate"> Pick a Date: </label><br>
+                        <input type="date" id="dateval" name="fdate"><br>
+                    </div>
+                    <div class="form-group  col-sm-1"></div>
+                    <div class="form-group  col-md-4">
+                        <label for="goldval">Enter Gold Value:</label><br>
+                        <input type="number" id="goldval" name="goldval" step="0.01"><br>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group  col-md-3">
-                    <label for="compval">Enter Comp Value:</label><br>
-                    <input type="number" id="compval" name="compval" step="0.01"><br>
+                <div class="row">
+                    <div class="form-group  col-md-4">
+                        <label for="compval">Enter Comp Value:</label><br>
+                        <input type="number" id="compval" name="compval" step="0.01"><br>
+                    </div>
+                    <div class="form-group  col-sm-1"></div>
+                    <div class="form-group  col-md-4">
+                        <label for="induval">Enter Indu Value:</label><br>
+                        <input type="number" id="induval" name="induval" step="0.01"><br>
+                    </div>
                 </div>
-                <div class="form-group  col-md-3">
-                    <label for="induval">Enter Indu Value:</label><br>
-                    <input type="number" id="induval" name="induval" step="0.01"><br>
+                <div class="row">
+                    <div class="form-group  col-md-4">
+                        <label for="oilval">Enter Oil Value:</label><br>
+                        <input type="number" id="oilval" name="oilval" step="0.01"><br>
+                    </div>
+                    <div class="form-group  col-sm-1"></div>
+                    <div class="form-group  col-md-4">
+                        <label for="spxval">Enter spx Value:</label><br>
+                        <input type="number" id="spxval" name="spxval" step="0.01"><br>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group  col-md-3">
-                    <label for="oilval">Enter Oil Value:</label><br>
-                    <input type="number" id="oilval" name="oilval" step="0.01"><br>
-                </div>
-                <div class="form-group  col-md-3">
-                    <label for="spxval">Enter spx Value:</label><br>
-                    <input type="number" id="spxval" name="spxval" step="0.01"><br>
-                </div>
-            </div>
-            <br>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <button id="tellMe" type="submit" class="btn btn-primary">Tell Me!!!</button>
-                </div>
-                <div class="form-group col-md-3">
-                    <div id="alertOutcome" class="alert alert-primary" role="alert">
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <button id="tellMe" type="submit" class="btn btn-primary">Tell Me!!!</button>
+                    </div>
+                    <div class="form-group  col-sm-1"></div>
+                    <div class="form-group col-md-4">
+                        <div id="alertOutcome" class="alert alert-primary" role="alert">
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-        </form>
-
-
-
-
-
-        <div class="row">
-            <div class="col-md-3 col-md12">
-                <h3>Data Line Graph</h2>
-                    <div id="line-plot"></div>
+            <div class="col-md-6 col-md-12">
+                <!-- <label>Data Graph</label> -->
+                <div id="line-plot"></div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-4 col-md-12">
+                <!-- <h3>Bitcoin Price</h2> -->
+                    <div id="bcprice-plot"></div>
+            </div>
+            <div class="col-md-4 col-md-12">
+                <!-- <h3>Gold Price</h2> -->
+                    <div id="goldprice-plot"></div>
+            </div>
+            <div class="col-md-4 col-md-12">
+                <!-- <h3>Oil Price</h2> -->
+                    <div id="oilprice-plot"></div>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="static/js/app.js"></script>

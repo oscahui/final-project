@@ -1,6 +1,3 @@
-Some shortcuts were taken:
-
-
 # Overview
 
 # data preparation
@@ -68,16 +65,39 @@ Some shortcuts were taken:
     For this one, the front end should have some inputs for different features to send to the route
 
 
-
-
-
 * `notebooks/00_Preprocessing.ipynb` loads in the source data and preprocesses it
 * `model/train.py` can be called from the root directory to train and save the model e.g. `python train/model.py`
 * `app.py` houses the flask app that will a guest can check their ticket for potential peril
 
+
+# How to Run on Your Local Machine
+
+1. enter this environment variable in gitbash: export DATABASE_URL="postgresql+psycopg2://postgres:putyourpasswordhere@localhost:5432"
+2. Ensure to update the Postgre username and password in the command
+3. Ensure Postgre server is running
+4. run -> python etl_func.py to load data to PG database
+5. run -> python app.py
+6. copy the link for the app and open in chrome
+
+
+# Link for deployed code in Heroku
+
+https://getrichquick.herokuapp.com/
+
+
 # Potential Improvements
 
+1. Bulletproofing code to prevent entering invalid data
+2. Feature to upload and save new data for retraining the model
+3. Utilise more models and elaborating the differences for each model
+
+
 ## Back End
-- [ ] Impute the missing values in the `age` column
+
+Utilised Python, Tensorfolow and Scikit-Learn to build models. Please ensure to unstall Tensorflow-CPU instead if you don't have a CUDA-eanbled (Nvidia) video card.
+
+Data was loaded on a postgre DB and SQLAlchemy was uitlised to interact with the DB.
 
 ## Front End
+
+Utilised HTML, CSS and Javascript. JS Plotly was also used for plotting graphs and bootstrap for styling. 

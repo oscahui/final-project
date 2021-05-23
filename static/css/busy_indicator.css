@@ -1,0 +1,37 @@
+/**********************************************************************
+ * Busy indicator
+ **********************************************************************/
+.bg {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(30, 30, 30, 0.5);
+}
+
+#busybox div {
+        position: fixed;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 8px solid white;
+        border-left-color: transparent;
+        border-right-color: transparent;
+
+        animation: busybox_kf 1s linear 0s infinite normal none running;
+}
+
+@keyframes busybox_kf {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes busybox_kf {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+}
+
+
