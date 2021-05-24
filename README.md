@@ -56,15 +56,14 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
     
 8. Web service route:
-    Thoughts:
-    (1) 1 route to do the ETL
+- 1 route to do the ETL
     Direct access with an <a> element
 
-    (2) 1 route to implement the model1.predict_date function, and return a predict price to show
-    (3) 1 route to implement the model1.predict_date function, and return a dataframe so we can draw a predict trend to the future
+- 1 route to implement the model1.predict_date function, and return a predict price to show
+- 1 route to implement the model1.predict_date function, and return a dataframe so we can draw a predict trend to the future
     For the these 2, front end should have an input of date to send to the route
 
-    (4) 1 route to implement the model2.create_model and model2.predict together, and return a predict trend of "up", "down", "nochange" for a given dict of feature values
+- 1 route to implement the model2.create_model and model2.predict together, and return a predict trend of "up", "down", "nochange" for a given dict of feature values
     For this one, the front end should have some inputs for different features to send to the route
 
 
