@@ -78,4 +78,4 @@ Python, Tensorfolow and Scikit-Learn have been utilised to build the models. If 
  
 
 # Front End
-HTML, CSS and Javascript have been utilised to build the webpage. JS Plotly was also used for plotting graphs and bootstrap for styling. 
+HTML, CSS and Javascript have been utilised to build the homepage. JS Plotly was also used for plotting graphs and bootstrap for styling. 
