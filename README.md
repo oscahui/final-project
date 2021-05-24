@@ -3,7 +3,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 
 <p align="center">
-  <img width="1000" height="584" src="https://fortraders.info/wp-content/uploads/2021/02/shutterstock_658232353.jpg">
+  <img width="800" height="467" src="https://fortraders.info/wp-content/uploads/2021/02/shutterstock_658232353.jpg">
 </p>
 
 # Instructions
