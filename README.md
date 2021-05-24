@@ -48,13 +48,15 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 - Use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and generate "svc.h5" and "svc.scl"             files so the model can be reused. They can be used with parameter "feature_list=<list>" to specify the features to train the model.
 - Use predict(list_data) function to predict if the price goes up, down or no change for the input timestamp.
 
-    
 7. There are 3 files to test the ETL and model functions:
   - ..\prototypes\etl_test.py
   - ..\prototypes\model1_testing.py
   - ..\prototypes\model2_testing.py
   
-
+8. Web service route:
+There are 2 routes to pull the data from bitcoin_data and mix_data table to show the historical data plots for bitcoin, gold and oil.
+  
+  
 ### Running the project on your local machine
 
 1. Enter this environment variable in gitbash: **export DATABASE_URL="postgresql+psycopg2://postgres:putyourpasswordhere@localhost:5432"**
