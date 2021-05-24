@@ -7,9 +7,9 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 1. Git pull the project folder. 
 
-2. ##[Data Preparation]     
+##[Data Preparation]     
 
-Download the following datasets copy the files into ..\final-project\data: 
+2. Download the following datasets copy the files into ..\final-project\data: 
     
 - Bitcoin Jan 2012 to March 2021 - https://www.kaggle.com/mczielinski/bitcoin-historical-data/download
 
@@ -26,25 +26,25 @@ Download the following datasets copy the files into ..\final-project\data:
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
    
    
-3. ##[ETL]
+##[ETL]
  
-Use \notebooks\DataProcess.ipynb to obtain the following:
+3. Use \notebooks\DataProcess.ipynb to obtain the following:
 - Bitcoin close price and ma price. Save findings to bitcoin.csv.
 - Bitcoin close price and other index prices. Save to combine.csv.
-    
-Open \final-project\etl_func.py and use init_table() function to load the following to postgresql:
+   
+   Open \final-project\etl_func.py and use init_table() function to load the following to postgresql:
 - Bitcoin.csv data to bitcoin_data table.
 - Combine.csv data to mix_data table.
 
 
-4. ##[Model Training]
+##[Model Training]
 
-(1) LSTM model (model1.py):
+4. LSTM model (model1.py):
 - Use create_model() function to train the LSTM model by using the bitcoin_data table. By default, it will generate "good_train_default.h5" and "scale_default.scl"             files so the model can be reused. They can be used with parameters "suffix=<str>" and "rmse_limit=<int>".
 - Use predict_date(date) function to predict and the close price for a specific date.
 - Use predict_date(date) function to predict all the close price from the last date in the database to the specific date, and return a dataframe for visualization.
 
-(2) Features model (model2.py):
+   Features model (model2.py):
 - Use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and generate "svc.h5" and "svc.scl"             files so the model can be reused. They can be used with parameter "feature_list=<list>" to specify the features to train the model.
 - Use predict(list_data) function to predict if the price goes up, down or no change for the input timestamp.
 
