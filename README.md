@@ -54,7 +54,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
   - ..\prototypes\model2_testing.py
   
 8. Web service route:
-There are 2 routes to pull the data from bitcoin_data and mix_data table to show the historical data plots for bitcoin, gold and oil.
+- There are 2 routes to pull the data from bitcoin_data and mix_data table to show the historical data plots for bitcoin, gold and oil.
   
   
 ### Running the project on your local machine
