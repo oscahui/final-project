@@ -36,8 +36,6 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
     - Oil 
     https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical
     Rename to HistoricalData_Oil.
-
-![Alt text](images/data.PNG?raw=true "features")
     
     3. [ETL] 
     Use \notebooks\DataProcess.ipynb to obtain the following:
@@ -50,13 +48,13 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
     4. [Model Training]
     (1) LSTM model (model1.py):
-        use create_model() function to train the LSTM model by using the bitcoin_data table, by default it will generate "good_train_default.h5" and "scale_default.scl" file so we can reuse the model. Can be used with parameter "suffix=<str>" and "rmse_limit=<int>".
-        use predict_date(date) function to predict and the close price for a specific date
-        use predict_date(date) function to predict all the close price from the last date in the database to the specific date, and return a dataframe for visualization.
+        - Use create_model() function to train the LSTM model by using the bitcoin_data table. By default, it will generate "good_train_default.h5" and "scale_default.scl"             files so the model can be reused. They can be used with parameters "suffix=<str>" and "rmse_limit=<int>".
+        - Use predict_date(date) function to predict and the close price for a specific date.
+        - Use predict_date(date) function to predict all the close price from the last date in the database to the specific date, and return a dataframe for visualization.
 
     (2) Features model (model2.py):
-        use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and i will generate a "svc.h5" and "svc.scl" file so we can reuse the model. Can be used with parameter "feature_list=<list>" to specify the features to train the model.
-        use predict(list_data) function to predict will the price go up, down or nochange for the input timestamp
+        - Use create_model() function to train the model using different features (default: gold, oil, comp, spx, indu and timestamp), and generate "svc.h5" and "svc.scl"               files so the modeil can be reused. They can be used with parameter "feature_list=<list>" to specify the features to train the model.
+        - Use predict(list_data) function to predict if the price goes up, down or no change for the input timestamp.
 
 5. There are 3 files etl_test.py / model1_testing.py /model2_testing.py to test the etl and model functions
 
