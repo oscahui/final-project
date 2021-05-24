@@ -7,6 +7,8 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 1. Git pull the project folder. 
 
+## Data Preparation
+
 ##Data Preparation  
 
 2. Download the following datasets copy the files into ..\final-project\data: 
