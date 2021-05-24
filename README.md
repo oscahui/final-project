@@ -41,14 +41,14 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
     
     3. [ETL] 
     Use \notebooks\DataProcess.ipynb to obtain the following:
-    (1) Obtain the bitcoin close price and ma price, and save to bitcoin.csv.
-    (2) Obtain the bitcoin close price and other index price, and save to combine.csv.
+    (1) Bitcoin close price and ma price. Save findings to bitcoin.csv.
+    (2) Bitcoin close price and other index prices. Save to combine.csv.
     
     Open \final-project\etl_func.py and use init_table() function to load the following to postgresql:
-    (3) Load the bitcoin.csv data to bitcoin_data table.
-    (4) Load the combine.csv data to mix_data table.
+    (3) Bitcoin.csv data to bitcoin_data table.
+    (4) Combine.csv data to mix_data table.
 
-4. Model training
+    4. [Model Training]
     (1) LSTM model (model1.py):
         use create_model() function to train the LSTM model by using the bitcoin_data table, by default it will generate "good_train_default.h5" and "scale_default.scl" file so we can reuse the model. Can be used with parameter "suffix=<str>" and "rmse_limit=<int>".
         use predict_date(date) function to predict and the close price for a specific date
