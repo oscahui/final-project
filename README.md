@@ -74,8 +74,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 
 # Back End
-Python, Tensorfolow and Scikit-Learn have been utilised to build the models. Please ensure to uninstall Tensorflow-CPU if you do not have a CUDA-eanbled (Nvidia) video card.
-Data was loaded on a postgre DB and SQLAlchemy was utilised to interact with the DB.
+Python, Tensorfolow and Scikit-Learn have been utilised to build the models. If you do not have a CUDA-enabled (Nvidia) video card, please install Tensorflow-cpu instead and uninstall Tensorflow. Data was loaded on a postgre DB and SQLAlchemy was utilised to interact with the DB. 
  
 
 # Front End
