@@ -75,9 +75,9 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 ### Running the project on your local machine
 
 1. Enter this environment variable in gitbash: export DATABASE_URL="postgresql+psycopg2://postgres:putyourpasswordhere@localhost:5432"
-2. Ensure to update your Postgre username and password in the command.
-3. Ensure Postgre server is running.
-4. Run python etl_func.py to load data to PG database.
+2. Ensure to update your postgre username and password in the command.
+3. Ensure postgre server is running.
+4. Run **python etl_func.py** to load data to PG database.
 5. Run python app.py.
 6. Copy the link for the app and open in chrome.
 
