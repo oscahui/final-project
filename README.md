@@ -49,12 +49,15 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 - Use predict(list_data) function to predict if the price goes up, down or no change for the input timestamp.
 
     
-7. There are 3 files (..\prototypes\etl_test.py, ..\prototypes\model1_testing.py, ..\prototypes\model2_testing.py) to test the ETL and model functions.
+7. There are 3 files to test the ETL and model functions:
+  - ..\prototypes\etl_test.py
+  - ..\prototypes\model1_testing.py
+  - ..\prototypes\model2_testing.py
 
     
 8. Web service route:
     Thoughts:
-    (1) 1 route to do the etl
+    (1) 1 route to do the ETL
     Direct access with an <a> element
 
     (2) 1 route to implement the model1.predict_date function, and return a predict price to show
