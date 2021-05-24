@@ -89,15 +89,16 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 # Potential Improvements
 1. Bulletproof code to prevent entering invalid data.
 2. Add a feature to upload and save new data for retraining the model.
-3. Utilise more models and elaborating the differences for each model.
+3. Utilise more models and elaborate the differences for each model.
 
 
-## Back End
+# Back End
 
-Utilised Python, Tensorfolow and Scikit-Learn to build models. Please ensure to uninstall Tensorflow-CPU instead if you don't have a CUDA-eanbled (Nvidia) video card.
+Python, Tensorfolow and Scikit-Learn have been utilised to build the models. Please ensure to uninstall Tensorflow-CPU if you do not have a CUDA-eanbled (Nvidia) video card.
 
 Data was loaded on a postgre DB and SQLAlchemy was utilised to interact with the DB.
+ 
 
-## Front End
+# Front End
 
-Utilised HTML, CSS and Javascript. JS Plotly was also used for plotting graphs and bootstrap for styling. 
+HTML, CSS and Javascript have been utilised to create the webpage. JS Plotly was also used for plotting graphs and bootstrap for styling. 
