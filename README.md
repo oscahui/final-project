@@ -72,23 +72,21 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 * `app.py` houses the flask app that will a guest can check their ticket for potential peril
 
 
-# How to Run on Your Local Machine
+# Running the project on your local machine
 
-1. enter this environment variable in gitbash: export DATABASE_URL="postgresql+psycopg2://postgres:putyourpasswordhere@localhost:5432"
-2. Ensure to update the Postgre username and password in the command
-3. Ensure Postgre server is running
-4. run -> python etl_func.py to load data to PG database
-5. run -> python app.py
-6. copy the link for the app and open in chrome
+1. Enter this environment variable in gitbash: export DATABASE_URL="postgresql+psycopg2://postgres:putyourpasswordhere@localhost:5432"
+2. Ensure to update the Postgre username and password in the command.
+3. Ensure Postgre server is running.
+4. Run python etl_func.py to load data to PG database.
+5. Run python app.py.
+6. Copy the link for the app and open in chrome.
 
 
 # Link for deployed code in Heroku
-
 https://getrichquick.herokuapp.com/
 
 
 # Potential Improvements
-
 1. Bulletproofing code to prevent entering invalid data
 2. Feature to upload and save new data for retraining the model
 3. Utilise more models and elaborating the differences for each model
