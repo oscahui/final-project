@@ -1,10 +1,10 @@
 # Project Objectives
 The purpose of this project is to predict the future price of Bitcoin. Also, using other variables (e.g. NASDAQ Composite Index, S&P 500 and Gold) within the financial industry to help determine if bitcoin’s price has any impact on other variables. 
 
+
 <p align="center">
   <img width="500" height="292" src="https://fortraders.info/wp-content/uploads/2021/02/shutterstock_658232353.jpg">
 </p>
-
 # Instructions
 
 1. Git pull the project folder. 
