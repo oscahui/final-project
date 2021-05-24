@@ -44,7 +44,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
     (1) Obtain the bitcoin close price and ma price, and save to bitcoin.csv.
     (2) Obtain the bitcoin close price and other index price, and save to combine.csv.
     
-    In etl_func.py use init_table() function to load the following to postgresql:
+    Open \final-project\etl_func.py and use init_table() function to load the following to postgresql:
     (3) Load the bitcoin.csv data to bitcoin_data table.
     (4) Load the combine.csv data to mix_data table.
 
