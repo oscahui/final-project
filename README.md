@@ -79,11 +79,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 3. Ensure postgre server is running.
 4. Run **python etl_func.py** to load data to PG database.
 5. Run **python app.py**.
-6. Copy the link for the app and open in chrome.
-
-
-# Link for deployed code in Heroku
-**https://getrichquick.herokuapp.com/**
+6. Open **https://getrichquick.herokuapp.com/** in chrome.
 
 
 # Potential Improvements
@@ -93,12 +89,9 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 
 # Back End
-
 Python, Tensorfolow and Scikit-Learn have been utilised to build the models. Please ensure to uninstall Tensorflow-CPU if you do not have a CUDA-eanbled (Nvidia) video card.
-
 Data was loaded on a postgre DB and SQLAlchemy was utilised to interact with the DB.
  
 
 # Front End
-
-HTML, CSS and Javascript have been utilised to create the webpage. JS Plotly was also used for plotting graphs and bootstrap for styling. 
+HTML, CSS and Javascript have been utilised to build the webpage. JS Plotly was also used for plotting graphs and bootstrap for styling. 
