@@ -87,16 +87,16 @@ https://getrichquick.herokuapp.com/
 
 
 # Potential Improvements
-1. Bulletproofing code to prevent entering invalid data
-2. Feature to upload and save new data for retraining the model
-3. Utilise more models and elaborating the differences for each model
+1. Bulletproof code to prevent entering invalid data.
+2. Add a feature to upload and save new data for retraining the model.
+3. Utilise more models and elaborating the differences for each model.
 
 
 ## Back End
 
-Utilised Python, Tensorfolow and Scikit-Learn to build models. Please ensure to unstall Tensorflow-CPU instead if you don't have a CUDA-eanbled (Nvidia) video card.
+Utilised Python, Tensorfolow and Scikit-Learn to build models. Please ensure to uninstall Tensorflow-CPU instead if you don't have a CUDA-eanbled (Nvidia) video card.
 
-Data was loaded on a postgre DB and SQLAlchemy was uitlised to interact with the DB.
+Data was loaded on a postgre DB and SQLAlchemy was utilised to interact with the DB.
 
 ## Front End
 
