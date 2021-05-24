@@ -1,7 +1,7 @@
 # Project Objectives
 The purpose of this project is to predict the future price of Bitcoin. Also, using other variables (e.g. NASDAQ Composite Index, S&P 500 and Gold) within the financial industry to help determine if bitcoin’s price has any impact on other variables. 
 
-![Alt text](images/bitcoin.PNG?raw=true "features")
+![Alt text](images/bitcoin.jpg?raw=true "features")
 
 # Instructions
 
