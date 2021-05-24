@@ -8,6 +8,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 1. Git pull the project folder. 
 
 2. [Data Preparation]     
+
 Download the following datasets copy the files into ..\final-project\data: 
     
 - Bitcoin Jan 2012 to March 2021 - https://www.kaggle.com/mczielinski/bitcoin-historical-data/download
@@ -23,15 +24,18 @@ Download the following datasets copy the files into ..\final-project\data:
 - Gold - https://www.nasdaq.com/market-activity/stocks/gold/historical. Rename to HistoricalData_Gold. 
 
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
-    
-3. [ETL] 
+   
+   
+3. [ETL]
+ 
 Use \notebooks\DataProcess.ipynb to obtain the following:
-(1) Bitcoin close price and ma price. Save findings to bitcoin.csv.
-(2) Bitcoin close price and other index prices. Save to combine.csv.
+- Bitcoin close price and ma price. Save findings to bitcoin.csv.
+- Bitcoin close price and other index prices. Save to combine.csv.
     
 Open \final-project\etl_func.py and use init_table() function to load the following to postgresql:
-(3) Bitcoin.csv data to bitcoin_data table.
-(4) Combine.csv data to mix_data table.
+- Bitcoin.csv data to bitcoin_data table.
+- Combine.csv data to mix_data table.
+
 
 4. [Model Training]
 (1) LSTM model (model1.py):
