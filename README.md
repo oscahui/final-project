@@ -7,7 +7,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 1. Git pull the project folder. 
 
-2. [Data Preparation]     
+2. ##[Data Preparation]     
 
 Download the following datasets copy the files into ..\final-project\data: 
     
@@ -26,7 +26,7 @@ Download the following datasets copy the files into ..\final-project\data:
 - Oil - https://www.nasdaq.com/market-activity/funds-and-etfs/oil/historical. Rename to HistoricalData_Oil.
    
    
-3. [ETL]
+3. ##[ETL]
  
 Use \notebooks\DataProcess.ipynb to obtain the following:
 - Bitcoin close price and ma price. Save findings to bitcoin.csv.
@@ -37,7 +37,7 @@ Open \final-project\etl_func.py and use init_table() function to load the follow
 - Combine.csv data to mix_data table.
 
 
-4. [Model Training]
+4. ##[Model Training]
 
 (1) LSTM model (model1.py):
 - Use create_model() function to train the LSTM model by using the bitcoin_data table. By default, it will generate "good_train_default.h5" and "scale_default.scl"             files so the model can be reused. They can be used with parameters "suffix=<str>" and "rmse_limit=<int>".
