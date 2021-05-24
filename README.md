@@ -10,7 +10,7 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 1. Git pull the project folder. 
 
-## Data Preparation
+### Data Preparation
 2. Download the following datasets copy the files into ..\final-project\data: 
     
 - Bitcoin Jan 2012 to March 2021 - https://www.kaggle.com/mczielinski/bitcoin-historical-data/download.
