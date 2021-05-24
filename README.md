@@ -5,17 +5,17 @@ The purpose of this project is to predict the future price of Bitcoin. Also, usi
 
 # Instructions
 
-    1. Git pull the project folder. 
+1. Git pull the project folder. 
 
-    2. [Data Preparation]     
-    Download the following datasets copy the files into ..\final-project\data: 
+2. [Data Preparation]     
+Download the following datasets copy the files into ..\final-project\data: 
     
-    - Bitcoin Jan 2012 to March 2021
-    https://www.kaggle.com/mczielinski/bitcoin-historical-data/download
+- Bitcoin Jan 2012 to March 2021
+https://www.kaggle.com/mczielinski/bitcoin-historical-data/download
 
-    - Bitcoin history after March 2021 
-    https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical
-    Rename to HistoricalData_BTC. 
+- Bitcoin history after March 2021 
+https://www.nasdaq.com/market-activity/cryptocurrency/btc/historical
+Rename to HistoricalData_BTC. 
 
     - Dow Industrials (INDU) 
     https://www.nasdaq.com/market-activity/index/indu/historical
